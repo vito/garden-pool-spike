@@ -9,8 +9,6 @@ DATA_DIR=/var/vcap/data/warden
 
 source /var/vcap/packages/common/utils.sh
 
-export PATH=/var/vcap/packages/serf/bin:$PATH
-
 case $1 in
 
   start)
@@ -46,8 +44,6 @@ case $1 in
 
     echo $$ > /var/vcap/sys/run/warden/warden.pid
 
-    serf join <%= p("serf.members").join(" ") %>
-
     exec /var/vcap/packages/garden/bin/garden \
       -disableQuotas=true \
       -socket=/var/vcap/data/warden/warden.sock \
@@ -56,6 +52,7 @@ case $1 in
       -backend=linux \
       -root=/var/vcap/packages/garden/src/github.com/vito/garden/root \
       -debug \
+      -serfMembers=<%= p("serf.members").join(",") %> \
       1>>$LOG_DIR/warden.stdout.log \
       2>>$LOG_DIR/warden.stderr.log
 

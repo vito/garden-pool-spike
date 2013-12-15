@@ -27,6 +27,8 @@ case $1 in
     ;;
 
   stop)
+    /var/vcap/packages/serf/bin/serf leave
+
     kill_and_wait $PIDFILE
 
     ;;

@@ -1,0 +1,15 @@
+---
+name: serf
+
+templates:
+  serf_ctl.erb: bin/serf_ctl
+
+packages:
+  - common
+  - serf
+
+properties:
+  serf.members:
+    description: "members of the serf cluster"
+  serf.role:
+    description: "name of the role for this job"

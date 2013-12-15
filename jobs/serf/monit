@@ -1,0 +1,5 @@
+check process serf
+  with pidfile /var/vcap/sys/run/serf/serf.pid
+  start program "/var/vcap/jobs/serf/bin/serf_ctl start"
+  stop program "/var/vcap/jobs/serf/bin/serf_ctl stop"
+  group vcap
