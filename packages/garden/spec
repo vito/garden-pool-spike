@@ -1,0 +1,11 @@
+---
+name: garden
+
+dependencies:
+  - golang
+
+files:
+  - garden/**/*.go
+  - garden/Makefile
+  - garden/warden/warden/root/**/*
+  - garden/warden/warden/src/**/*

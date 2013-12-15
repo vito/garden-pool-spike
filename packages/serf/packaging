@@ -1,0 +1,11 @@
+set -e
+
+find ${BOSH_INSTALL_TARGET}
+
+cp -a src/ ${BOSH_INSTALL_TARGET}/src/
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOPATH=$BOSH_INSTALL_TARGET
+export PATH=$GOROOT/bin:$PATH
+
+go install github.com/hashicorp/serf

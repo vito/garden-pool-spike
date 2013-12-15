@@ -1,0 +1,11 @@
+check process serf
+  with pidfile /var/vcap/sys/run/serf/serf.pid
+  start program "/var/vcap/jobs/warden/bin/serf_ctl start"
+  stop program "/var/vcap/jobs/warden/bin/serf_ctl stop"
+  group vcap
+
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/warden/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/warden/bin/warden_ctl stop"
+  group vcap

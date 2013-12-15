@@ -1,0 +1,11 @@
+set -e
+
+cd ${BUILD_DIR}/
+
+export GOPATH=$PWD
+export PATH=$GOPATH/bin:$PATH
+
+mkdir -p $GOPATH/src/github.com/hashicorp
+mv serf/ $GOPATH/src/github.com/hashicorp/serf/
+
+go get -d -v ./src/github.com/hashicorp/serf/...

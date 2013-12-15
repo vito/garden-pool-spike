@@ -1,0 +1,13 @@
+---
+golang/go1.1.2.linux-amd64-yacc-shaved.tar.gz:
+  object_id: 12274b09-fe06-4990-a2fe-1b6e04616009
+  sha: 02aa9f47b95ce012b5702daf41d3ff4b781ac30e
+  size: 41768327
+git/git-1.7.11.2.tar.gz:
+  object_id: rest/objects/4e4e78bca61e121204e4e86eebe59104fff12d7e49c6
+  sha: f67b4f6c0277250411c6872ae7b8a872ae11d313
+  size: 4015780
+rootfs/lucid64.tar.gz:
+  object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae051782c701f072
+  sha: b2633b2ab4964f91402bb2d889f2f12449a8b828
+  size: 199489185

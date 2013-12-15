@@ -1,0 +1,6 @@
+[submodule "src/garden"]
+	path = src/garden
+	url = git@github.com:vito/garden.git
+[submodule "src/serf"]
+	path = src/serf
+	url = https://github.com/hashicorp/serf

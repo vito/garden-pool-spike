@@ -1,0 +1,39 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/serf
+LOG_DIR=/var/vcap/sys/log/serf
+PIDFILE=$RUN_DIR/serf.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "serf"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    exec /var/vcap/packages/serf/bin/serf agent \
+          -role="<%= p("serf.role") %>" \
+         1>>$LOG_DIR/serf.stdout.log \
+         2>>$LOG_DIR/serf.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: serf_ctl {start|stop}"
+
+    ;;
+
+esac
