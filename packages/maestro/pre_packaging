@@ -1,0 +1,11 @@
+set -e
+
+cd ${BUILD_DIR}/
+
+export GOPATH=$PWD
+export PATH=$GOPATH/bin:$PATH
+
+mkdir -p $GOPATH/src/github.com/vito
+mv maestro/ $GOPATH/src/github.com/vito/maestro/
+
+go get -d -v ./src/github.com/vito/maestro/...

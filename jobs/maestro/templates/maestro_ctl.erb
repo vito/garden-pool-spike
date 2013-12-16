@@ -1,0 +1,46 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/maestro
+LOG_DIR=/var/vcap/sys/log/maestro
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+PIDFILE=$RUN_DIR/maestro.pid
+DATA_DIR=/var/vcap/data/maestro
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Maestro"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $DATA_DIR
+    mkdir -p $LOG_DIR
+
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
+
+    echo $$ > /var/vcap/sys/run/maestro/maestro.pid
+
+    exec /var/vcap/packages/maestro/bin/maestro \
+      -serfMembers=<%= p("serf.members").join(",") %> \
+      1>>$LOG_DIR/maestro.stdout.log \
+      2>>$LOG_DIR/maestro.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: maestro_ctl {start|stop}"
+
+    ;;
+
+esac

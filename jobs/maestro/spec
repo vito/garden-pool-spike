@@ -1,0 +1,14 @@
+---
+name: maestro
+
+templates:
+  maestro_ctl.erb: bin/maestro_ctl
+
+packages:
+  - common
+  - maestro
+
+properties:
+  serf.members:
+    description: "members of the serf cluster"
+    default: []

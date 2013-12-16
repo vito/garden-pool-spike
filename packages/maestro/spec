@@ -1,0 +1,8 @@
+---
+name: maestro
+
+dependencies:
+  - golang
+
+files:
+  - maestro/**/*.go

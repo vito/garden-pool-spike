@@ -4,3 +4,6 @@
 [submodule "src/serf"]
 	path = src/serf
 	url = https://github.com/hashicorp/serf
+[submodule "src/maestro"]
+	path = src/maestro
+	url = https://github.com/vito/maestro.git
